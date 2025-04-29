@@ -1,18 +1,30 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { EmployeeComponent } from './employee-form/employee-form.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { Routes } from '@angular/router';
+import { AddEmployeeComponent } from './page/dashboard/add-employee/add-employee.component';
+import { ManageComponent } from './page/dashboard/manage/manage.component';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'employees', component: EmployeeListComponent },
-  { path: 'add-employee', component: EmployeeComponent },
-  { path: '**', redirectTo: '' }
+export const routes: Routes = [
+    {
+        path: "dashboard",
+        component:DashboardComponent,
+        children:[
+          {
+            path:"",
+            component:AddEmployeeComponent
+          }
+          ,
+          {
+            path:"add",
+            component:AddEmployeeComponent
+          },{
+            path:"manage",
+            component:ManageComponent
+          }
+        ]
+    },{
+      path:"",
+      component:DashboardComponent
+    }
+
+
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
