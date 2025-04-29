@@ -8,6 +8,70 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root><div class="min-h-screen bg-slate-50 flex flex-col lg:flex-row relative">
+    <!-- Sidebar -->
+    <div class="bg-white w-72 shadow-2xl lg:fixed lg:inset-y-0 lg:left-0 z-40 transition-all duration-300">
+      <div class="px-6 py-6 border-b border-slate-100">
+        <div class="flex items-center space-x-3">
+          <div class="bg-gradient-to-r from-indigo-600 to-purple-600 w-10 h-10 rounded-xl flex items-center justify-center shadow-md">
+            <span class="text-white font-bold text-xl">EM</span>
+          </div>
+          <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-transparent bg-clip-text">
+            EmpManager
+          </h1>
+        </div>
+      </div>
+  
+      <nav class="flex-1 overflow-y-auto py-6 px-4 h-full">
+        <div class="mb-4 px-4">
+          <h5 class="text-xs font-semibold text-slate-400 uppercase tracking-wide">Management</h5>
+        </div>
+  
+        <ul class="space-y-2">
+          <li>
+            <a 
+              [routerLink]="['/dashboard/add']" 
+              routerLinkActive="bg-indigo-100 text-indigo-700 font-semibold"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-700 rounded-xl transition-all duration-200 group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"/>
+                </svg>
+              </div>
+              <span class="font-medium">Add Employee</span>
+            </a>
+          </li>
+  
+          <li>
+            <a 
+              [routerLink]="['/dashboard/manage']" 
+              routerLinkActive="bg-indigo-100 text-indigo-700 font-semibold"
+              class="flex items-center gap-3 px-4 py-3 text-slate-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-700 rounded-xl transition-all duration-200 group">
+              <div class="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+              </div>
+              <span class="font-medium">Manage Employees</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  
+    <!-- Main content -->
+    <div class="flex-1 lg:ml-72 transition-all duration-300 min-h-screen">
+      <header class="bg-white shadow-md sticky top-0 z-30 py-4 px-6 flex items-center justify-between">
+        <h2 class="text-xl font-semibold text-slate-800">Dashboard</h2>
+      </header>
+  
+      <main class="p-6">
+        <div class="container mx-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </main>
+    </div>
+  </div>
+  </app-root>
 </body>
 </html>
