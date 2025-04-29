@@ -14,16 +14,16 @@ export default class EmployeeService {
     return this.http.post<Employee>("http://localhost:8080/api/employee/add",employee);
   }
 
-  update(employeeId:number,employee:Employee):Observable<Employee>{
-    return this.http.put<Employee>(`http://localhost:8080/api/employee/update/${employeeId}`, employee);
+  update(id:number,employee:Employee):Observable<Employee>{
+    return this.http.put<Employee>(`http://localhost:8080/api/employee/update-employee/${id}`, employee);
   }
 
   getAll():Observable<Employee[]>{
-    return this.http.get<Employee[]>("http://localhost:8080/api/employee/all")
+    return this.http.get<Employee[]>("http://localhost:8080/api/employee/getAll")
   }
 
-  delete(employeeId:number){
-    return this.http.delete("http://localhost:8080/api/employee/delete/"+employeeId)
+  delete(id:number){
+    return this.http.delete("http://localhost:8080/api/employee/delete/"+id)
   }
 
   searchByName(name:string):Observable<Employee>{

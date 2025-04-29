@@ -1,5 +1,5 @@
 export default class Employee{
-  employeeId:number
+  id:number
   name:string
   email:string
   department:string
@@ -7,7 +7,7 @@ export default class Employee{
   modifiedDate:string
 
   constructor(
-  employeeId:number,
+  id:number,
   name:string,
   email:string,
   department:string,
@@ -15,7 +15,7 @@ export default class Employee{
   modifiedDate:string
 
   ){
-    this.employeeId = employeeId;
+    this.id = id;
     this.name = name ;
     this.email = email ;
     this.department = department;

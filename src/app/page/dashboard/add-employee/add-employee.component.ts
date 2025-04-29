@@ -5,6 +5,7 @@ import Employee from '../../../model/employee.model';
 import EmployeeService from '../../../services/employeeService';
 
 
+
 @Component({
   selector: 'app-add-employee',
   imports: [CommonModule,FormsModule],
@@ -17,7 +18,7 @@ export class AddEmployeeComponent {
   constructor(private employeeService:EmployeeService){}
 
   public employee : Employee= {
-    employeeId: 0,
+    id: 0,
     name: '',
     email: '',
     department: '',
@@ -36,7 +37,7 @@ export class AddEmployeeComponent {
 
   resetform(){
       this.employee ={
-      employeeId: 0,
+      id: 0,
       name: '',
       email: '',
       department: '',
