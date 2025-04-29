@@ -1,1 +1,22 @@
-<H1>Akash</H1>
+<!-- src/app/app.component.html -->
+
+<div class="app-container">
+  <header>
+    <h1>Employee Management System</h1>
+    <nav>
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/employees" routerLinkActive="active">Employee List</a></li>
+        <li><a routerLink="/add-employee" routerLinkActive="active">Add Employee</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer>
+    <p>&copy; Employee Management System</p>
+  </footer>
+</div>
