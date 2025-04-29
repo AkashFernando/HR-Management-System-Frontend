@@ -1,76 +1,33 @@
-// src/app/employee-form/employee-form.component.ts
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { EmployeeService } from '../services/employee.service';
-import { Employee } from '../models/employee.model';
 
 @Component({
-  selector: 'app-employee-form',
+  selector: 'app-employee',
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css']
 })
-export class EmployeeFormComponent implements OnInit {
+export class EmployeeComponent {
   employeeForm: FormGroup;
-  departments = ['IT', 'HR', 'Finance', 'Marketing', 'Operations'];
-  positions = ['Manager', 'Developer', 'Designer', 'Analyst', 'Assistant'];
-  submitted = false;
-  
-  constructor(
-    private fb: FormBuilder,
-    private employeeService: EmployeeService,
-    private router: Router
-  ) { }
+  departments = ['IT', 'HR', 'Finance', 'Marketing'];
 
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-  initForm(): void {
+  constructor(private fb: FormBuilder) {
     this.employeeForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       department: ['', Validators.required],
-      position: ['', Validators.required],
-      salary: ['', [Validators.required, Validators.min(0)]]
+      position: ['', Validators.required]
     });
   }
 
-  // Easy access to form fields
-  get f() { return this.employeeForm.controls; }
-
-  onSubmit(): void {
-    this.submitted = true;
-    
-    // Stop if the form is invalid
-    if (this.employeeForm.invalid) {
-      return;
+  onSubmit() {
+    if (this.employeeForm.valid) {
+      console.log('New Employee:', this.employeeForm.value);
+      alert('Employee added successfully!');
+      this.employeeForm.reset();
+    } else {
+      this.employeeForm.markAllAsTouched();
+      alert('Please fill out all required fields correctly.');
     }
-    
-    // Create employee object
-    const employee: Employee = this.employeeForm.value;
-    
-    // Add employee using service
-    this.employeeService.addEmployee(employee).subscribe(
-      response => {
-        console.log('Employee added successfully:', response);
-        // Navigate to employee list
-        this.router.navigate(['/employees']);
-      },
-      error => {
-        console.error('Error adding employee:', error);
-      }
-    );
-  }
-
-  onCancel(): void {
-    this.router.navigate(['/employees']);
-  }
-
-  onReset(): void {
-    this.submitted = false;
-    this.employeeForm.reset();
   }
 }
